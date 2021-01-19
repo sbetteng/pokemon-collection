@@ -7,6 +7,23 @@
   pointer-events: none;
 }
 
+.logo-pokemon {
+  height: 30vmin;
+  pointer-events: none;
+}
+
+.images-pokemon {
+  height: 50vmin;
+  pointer-events: none;
+}
+
+.wrap-button {
+  padding: 20px;
+  button {
+    margin: 5px 5px;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -28,11 +45,11 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
