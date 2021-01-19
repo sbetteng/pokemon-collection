@@ -6,13 +6,15 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home() { 
-  return 
+  return (
+    <h1></h1>
+  )
 }
 
 function PokemonList() { 
   return (
     <div>
-      <h1>Pokemon List</h1>
+      <h1>Pokemon Collection</h1>
 
       <h1>All Pokemon (123)</h1>
       <Container>
@@ -43,11 +45,8 @@ function DetailPokemon({ match }) {
 function MyPokemon() { 
   return (
     <div>
-      <h1>PokemonList</h1>
-      <ul>
-        <Link to='users/Betteng'> Betteng</Link> <br />
-        <Link to='users/Syaiful'> Syaiful</Link>
-      </ul>
+      <h1>My Pokemon Collection</h1>
+      
     </div>
 
   ) 
@@ -104,8 +103,10 @@ class App extends Component {
 
         <div className="App">
           <header className="App-header">
-            {/* <img src={logo} className="App-logo" alt="logo" /> */}
-            <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-logo.png"} className="logo-pokemon" alt="logo-pokemon" />
+            <Link to={'/pokemon-collection'}>
+              <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-logo.png"} className="logo-pokemon" alt="logo-pokemon" />
+            </Link>
+            
             <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-images.png"} className="images-pokemon" alt="images-pokemon" />
             <Container>
               <Row>
