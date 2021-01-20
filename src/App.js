@@ -88,9 +88,9 @@ function DetailMyPokemon({ match }) {
   return <h1>ini Halaman { match.params.name }</h1>
 }
 
-// function NotFound() { 
-//   return <h1>404, Halaman Tidak ditemukan</h1>
-// }
+function NotFound() { 
+  return (<h1>404, Halaman Tidak ditemukan</h1>)
+}
 
 class App extends Component {
 
@@ -110,9 +110,9 @@ class App extends Component {
           <header className="App-header">
             <Link to={'/pokemon-collection'}>
               <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-logo.png"} className="logo-pokemon" alt="logo-pokemon" />
-            </Link>
             
-            <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-images.png"} className="images-pokemon" alt="images-pokemon" />
+              <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-images.png"} className="images-pokemon" alt="images-pokemon" />
+            </Link>
             <Container>
               <Row>
                 <Col >
@@ -129,12 +129,13 @@ class App extends Component {
               
               <main>
                 <Switch>
+                  <Route path='/' exact />
                   <Route path='/pokemon-collection' exact />
                   <Route path='/pokemon-list' exact component={PokemonList} />
                   <Route path='/pokemon-list/:id' exact component={DetailPokemon} />
                   <Route path='/my-pokemon-list' exact component={MyPokemon} />
                   <Route path='/my-pokemon-list/:id' exact component={DetailMyPokemon} />
-                  {/* <Route component={NotFound} /> */}
+                  <Route component={NotFound} />
                 </Switch>
               </main>
               
