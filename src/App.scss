@@ -10,6 +10,11 @@
 .logo-pokemon {
   height: 30vmin;
   pointer-events: none;
+  opacity: 100%;
+  &:hover,
+  &:focus{
+   opacity: 50%;
+  }
 }
 
 .images-pokemon {
@@ -21,6 +26,19 @@
   padding: 20px;
   button {
     margin: 5px 5px;
+  }
+}
+
+.wrap-card {
+  .col{
+    text-align: center;
+    padding: 20px 0;
+  }
+  .card-title {
+    color: #282c34;
+  }
+  .card-text {
+    color: #282c34;
   }
 }
 

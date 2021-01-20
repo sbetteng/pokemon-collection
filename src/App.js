@@ -2,51 +2,83 @@ import logo from './logo.svg';
 import './App.scss';
 import { Component } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+class PokemonList extends Component {
+  constructor(props) { 
+    super(props)
+    this.state = {
+      items: [],
+      count: 0,
+      isLoading: true
+    }
+  }
 
-function Home() { 
-  return (
-    <h1></h1>
-  )
-}
+  // API
+  componentDidMount() {
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=100&offset=200")
+    // fetch("https://pokeapi.co/api/v2/pokemon")
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          isLoaded: true,
+          items: res.results,
+          count: res.results.length,
+          isLoading: false
+        });
+      });
+  }
+  
+  render() {
+    const { items, isLoading, count, setCount } = this.state
+    if (isLoading) { 
+      return <p>Loading.....</p>
+    }
+    return (
+      <div>
+        <h1>Pokemon Collection</h1>
+        <h3>All Pokemon ({count})</h3>
+        <Container>
+          <div className="wrap-card">
+          {/* <Pagination size="lg">{items}</Pagination> <br /> */}
+          <Row className="justify-content-lg-center">
+            {items.map(results => (
+                // <li key={results.id}> Name : {results.name}</li>
+              
+            <Col>
+              <Card key={results.id} style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={process.env.PUBLIC_URL + "/images/pokemon-ball.png"} style={{ padding: '40px' }}/>
+                <Card.Body>
+                  <Card.Title>{results.name}</Card.Title>
+                  {/* <Card.Text>
+                    Some quick example text to build on the card title and make up the bulk of
+                    the card's content.
+                  </Card.Text> */}
+                  <Button variant="info" size="md">Detail</Button>
+                </Card.Body>
+              </Card>
+              </Col>
+              
+              ))}
+          </Row>
+          </div>
+        </Container>
+      </div>
 
-function PokemonList() { 
-  return (
-    <div>
-      <h1>Pokemon Collection</h1>
-
-      <h1>All Pokemon (123)</h1>
-      <Container>
-        <Row>
-          <Col>
-            <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text>
-                <Button variant="primary" size="lg">Detail</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-       </Container>
-    </div>
-
-  ) 
+    )
+  }  
 }
 function DetailPokemon({ match }) { 
-  return <h1>ini Halaman { match.params.name }</h1>
+  return (
+    <h1>ini Halaman { match.params.id }</h1>
+  ) 
 }
 
 function MyPokemon() { 
   return (
     <div>
       <h1>My Pokemon Collection</h1>
-      
+      <h3>Owned Pokemon (123)</h3>
     </div>
 
   ) 
@@ -61,41 +93,14 @@ function DetailMyPokemon({ match }) {
 // }
 
 class App extends Component {
-  constructor(props) { 
-    super(props)
-    this.state = {
-      items: [],
-      isLoading: true
-    }
-  }
-
-  // API
-  componentDidMount() {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=100&offset=200")
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          isLoaded: true,
-          items: res.results,
-          isLoading: false
-        });
-      });
-  }
-
 
   render() {
-    const { items, isLoading } = this.state
-    // var { items = [] } = this.props;
-    // var { isLoading } = this.state;
     
-    if (isLoading) { 
-      return <p>Loading.....</p>
-    }
     return (
       <BrowserRouter>
         {/* <div>
           <ul>
-            {items.map( results => (
+            {items.map(results => (
               <li key={results.id}> Name : {results.name}</li>
             ))}
           </ul>
@@ -124,7 +129,7 @@ class App extends Component {
               
               <main>
                 <Switch>
-                  <Route path='/pokemon-collection' exact component={Home} />
+                  <Route path='/pokemon-collection' exact />
                   <Route path='/pokemon-list' exact component={PokemonList} />
                   <Route path='/pokemon-list/:id' exact component={DetailPokemon} />
                   <Route path='/my-pokemon-list' exact component={MyPokemon} />
