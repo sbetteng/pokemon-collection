@@ -10,11 +10,6 @@
 .logo-pokemon {
   height: 30vmin;
   pointer-events: none;
-  opacity: 100%;
-  &:hover,
-  &:focus{
-   opacity: 50%;
-  }
 }
 
 .images-pokemon {

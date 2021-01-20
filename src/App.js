@@ -109,9 +109,10 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Link to={'/pokemon-collection'}>
-              <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-logo.png"} className="logo-pokemon" alt="logo-pokemon" />
-            
-              <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-images.png"} className="images-pokemon" alt="images-pokemon" />
+              <div>
+                <img src={process.env.PUBLIC_URL + "/images/pokemon-logo.png"} className="logo-pokemon" alt="logo-pokemon" />
+                <img src={process.env.PUBLIC_URL + "/images/pokemon-collection-images.png"} className="images-pokemon" alt="images-pokemon" />
+              </div>
             </Link>
             <Container>
               <Row>
