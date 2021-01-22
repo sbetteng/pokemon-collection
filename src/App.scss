@@ -25,15 +25,18 @@
 }
 
 .wrap-card {
-  .col{
-    text-align: center;
-    padding: 20px 0;
-  }
+  // .col{
+  //   text-align: center;
+  //   padding: 20px 0;
+  // }
   .card-title {
     color: #282c34;
   }
   .card-text {
     color: #282c34;
+  }
+  &-detail{
+    margin: 20px 0px 100px 0px;
   }
 }
 
